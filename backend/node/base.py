@@ -31,7 +31,8 @@ class Node:
         # Possible values: 'unprocessed', 'processing', 'processed'
 
     def add_edge(self, edge):
-        self.edges.append(edge)
+        if edge not in self.edges:
+            self.edges.append(edge)
 
     def get_outgoing_edges(self):
         return [edge for edge in self.edges if edge.source == self]
