@@ -21,64 +21,23 @@ import SquareAnnotationNode from "./nodes/SquareAnnotationNode.tsx";
 import SelectorNode from "./nodes/SelectorNode.tsx";
 import PlayPanel from "./actions/play.tsx";
 import UploadImage from "./nodes/UploadImage.tsx";
+import Output from "./nodes/Output.tsx";
 
 const nodeTypes = {
   annotation: AnnotationNode,
   squareAnnotation: SquareAnnotationNode,
   selector: SelectorNode,
   imageUpload: UploadImage,
+  output: Output,
 };
 
 const initialNodes = [
-  // { id: "1", position: { x: 0, y: 0 }, data: { label: "OpenAI" } },
-  // {
-  //   id: "2",
-  //   position: { x: 100, y: 100 },
-  //   data: { label: "Text Processer Node" },
-  // },
-  // { id: "3", position: { x: 200, y: 100 }, data: { label: "Output" } },
-
   {
     id: "4",
     type: "imageUpload",
     position: { x: 100, y: 200 },
     data: { imageUrl: "" },
   },
-  // {
-  //   id: "5",
-  //   type: "annotation",
-  //   data: { text: "Load dataset from Google Drive" },
-  //   position: { x: 100, y: 50 },
-  // },
-  // {
-  //   id: "6",
-  //   type: "annotation",
-  //   data: { text: "Train model" },
-  //   position: { x: 200, y: 50 },
-  // },
-  // {
-  //   id: "7",
-  //   type: "squareAnnotation",
-  //   data: {
-  //     imageUrl: "../images/a11.png",
-  //     imageAlt: "Description of Image",
-  //     heading: "Detect Objects",
-  //     description: "Upload A Few Images and Detect Them! ",
-  //   },
-  //   position: { x: 200, y: 50 },
-  // },
-  // {
-  //   id: "8",
-  //   type: "squareAnnotation",
-  //   data: {
-  //     imageUrl: "../images/a12.png",
-  //     imageAlt: "Description of Image",
-  //     heading: "Clone your Voice",
-  //     description: "Upload a Sample of Your Voice and Clone it!",
-  //   },
-  //   position: { x: 200, y: 50 },
-  // },
-
   {
     id: "9",
     type: "selector",
@@ -87,12 +46,25 @@ const initialNodes = [
       selectValue: "VisionTransformer",
     },
   },
+  {
+    id: "11",
+    type: "output",
+    position: { x: 300, y: 500 },
+  },
+  
 ];
 const initialEdges = [
   {
     id: "e1-2",
     source: "4",
     target: "9",
+    type: "step",
+    animated: true,
+  },
+  {
+    id: "e2-3",
+    source: "9",
+    target: "11",
     type: "step",
     animated: true,
   },
