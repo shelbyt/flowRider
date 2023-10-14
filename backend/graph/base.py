@@ -20,16 +20,6 @@ class Graph:
             target.add_edge(edge)
 
     def topological_sort(self):
-        """
-        Perform a topological sort on the graph.
-
-        Returns:
-            list: A list of nodes in the graph, sorted in topological order.
-        
-        Raises:
-            ValueError: If the graph contains a cycle, a ValueError is raised.
-
-        """
         # States: 0 = unvisited, 1 = visiting, 2 = visited
         state = {node: 0 for node in self.nodes.values()}
         sorted_nodes = []
