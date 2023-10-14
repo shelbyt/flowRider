@@ -26,7 +26,9 @@ class Graph:
 
         def dfs(node):
             if state[node] == 1:
-                raise ValueError("Graph contains a cycle, cannot perform topological sort")
+                raise ValueError(
+                    "Graph contains a cycle, cannot perform topological sort"
+                )
             if state[node] == 0:
                 state[node] = 1
                 for edge in node.get_outgoing_edges():
@@ -39,3 +41,8 @@ class Graph:
                 dfs(node)
 
         return sorted_nodes
+
+    def __repr__(self):
+        nodes_repr = "\n".join(repr(node) for node in self.nodes.values())
+        edges_repr = "\n".join(repr(edge) for edge in self.edges)
+        return f"Graph Nodes:\n{nodes_repr}\n\nGraph Edges:\n{edges_repr}"

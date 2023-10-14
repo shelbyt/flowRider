@@ -27,7 +27,7 @@ class Node:
         self.params = params if params else {}
         self.edges = []
         self.artifacts = {}  # To store outputs/results
-        self.status = 'unprocessed'  
+        self.status = "unprocessed"
         # Possible values: 'unprocessed', 'processing', 'processed'
 
     def add_edge(self, edge):
@@ -39,3 +39,6 @@ class Node:
 
     def get_incoming_edges(self):
         return [edge for edge in self.edges if edge.target == self]
+
+    def __repr__(self):
+        return f"Node(ID: {self.id}, Type: {self.node_type}, Params: {self.params}, Status: {self.status})"

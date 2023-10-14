@@ -9,3 +9,6 @@ class Edge:
         """
         self.source = source
         self.target = target
+
+    def __repr__(self):
+        return f"Edge(From: {self.source.id}, To: {self.target.id})"

@@ -31,7 +31,7 @@ async def play(data: dict):
     print("data received")
     print(data)
     graph = create_graph_from_string(data)
-    visualize_graph(graph)
+    # visualize_graph(graph)
     return {"status": "Data received and printed"}
 
 @app.post("/upload/")

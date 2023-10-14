@@ -45,6 +45,7 @@ def create_graph_from_string(data: dict) -> Graph:
         node_params = node_data.get('data', {})
         node = Node(id=node_id, node_type=node_type, params=node_params)
         graph.add_node(node)
+        print(graph)
     
     # Add edges to the graph
     for edge_data in data['edges']:
@@ -52,5 +53,6 @@ def create_graph_from_string(data: dict) -> Graph:
         target_id = edge_data['target']
         edge = Edge(source=graph.nodes[source_id], target=graph.nodes[target_id])
         graph.add_edge(source_id, target_id)
+        print(graph)
     
     return graph
