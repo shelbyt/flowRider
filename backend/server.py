@@ -24,8 +24,9 @@ app.add_middleware(
 app.mount("/images", StaticFiles(directory="images"), name="images")
 
 
-@app.get("/play/")
-async def play(data):
+@app.post("/play/")
+async def play(data: dict):
+    print("data received")
     print(data)
     return {"status": "Data received and printed"}
 

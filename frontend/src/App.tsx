@@ -12,6 +12,7 @@ import ReactFlow, {
   Connection,
 } from "reactflow";
 import { useState, useCallback } from "react";
+import axios from "axios";
 
 import "reactflow/dist/style.css";
 import "../tailwind.config.js";
@@ -40,8 +41,8 @@ const initialNodes = [
   {
     id: "4",
     type: "imageUpload",
-    position: { x: 300, y: 50 },
-    data: {imageUrl: ""}
+    position: { x: 100, y: 200 },
+    data: { imageUrl: "" },
   },
   // {
   //   id: "5",
@@ -83,16 +84,15 @@ const initialNodes = [
     type: "selector",
     position: { x: 300, y: 200 },
     data: {
-      selectValue: "smoothstep"
+      selectValue: "VisionTransformer",
     },
   },
 ];
 const initialEdges = [
   {
     id: "e1-2",
-    source: "1",
-    target: "2",
-    label: "to the",
+    source: "4",
+    target: "9",
     type: "step",
     animated: true,
   },
@@ -108,7 +108,22 @@ function Flow() {
   const onPlay = useCallback(() => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      localStorage.setItem(flowKey, JSON.stringify(flow));
+      const flowString = JSON.stringify(flow);
+      localStorage.setItem(flowKey, flowString);
+
+      // Send the flow data to the backend
+      axios
+        .post("http://127.0.0.1:8000/play/", flowString, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("Error sending data to backend:", error);
+        });
     }
   }, [rfInstance]);
 

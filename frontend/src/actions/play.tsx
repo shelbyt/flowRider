@@ -1,4 +1,3 @@
-import React from "react";
 import { Panel } from "reactflow";
 import { motion, useAnimation } from "framer-motion";
 
