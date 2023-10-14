@@ -2,7 +2,7 @@
 import React, { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 
-function OutputNode({}) {
+function OutputNode() {
   const [outputText, setOutputText] = useState('');
   return (
     <div className="relative p-2 border rounded-md">
