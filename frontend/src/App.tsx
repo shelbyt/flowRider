@@ -41,6 +41,7 @@ const initialNodes = [
     id: "4",
     type: "imageUpload",
     position: { x: 300, y: 50 },
+    data: {imageUrl: ""}
   },
   // {
   //   id: "5",

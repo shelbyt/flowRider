@@ -21,12 +21,12 @@ const options = [
 ];
 
 function Select({ value, nodeId }) {
+  console.log("select Node id = ", nodeId)
   const { setNodes } = useReactFlow();
   const store = useStoreApi();
 
   const onChange = (evt) => {
     const { nodeInternals } = store.getState();
-    console.log(nodeInternals);
     setNodes(
       Array.from(nodeInternals.values()).map((node) => {
         if (node.id === nodeId) {
