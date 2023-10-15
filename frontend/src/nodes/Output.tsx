@@ -2,8 +2,7 @@
 import React, { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 
-function OutputNode() {
-  const [outputText, setOutputText] = useState('');
+function OutputNode({data}) {
   return (
     <div className="relative p-2 border rounded-md">
       <Handle type="target" position={Position.Left} />
@@ -11,8 +10,8 @@ function OutputNode() {
       <label className="block text-center">
         Output:
         <textarea
-          className="mt-2 w-full p-2 border rounded-md"
-          value={outputText}
+          className="mt-2 w-full p-2 border rounded-md text-xs"
+          value={data.value}
           readOnly
         />
       </label>

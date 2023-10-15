@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactFlow, {
   Controls,
   Background,
@@ -28,7 +28,7 @@ const nodeTypes = {
   squareAnnotation: SquareAnnotationNode,
   selector: SelectorNode,
   imageUpload: UploadImage,
-  output: Output,
+  textOutput: Output,
 };
 
 const initialNodes = [
@@ -48,10 +48,13 @@ const initialNodes = [
   },
   {
     id: "11",
-    type: "output",
+    type: "textOutput",
     position: { x: 300, y: 500 },
+    data: {
+      value: ""
+    }
   },
-  
+
 ];
 const initialEdges = [
   {
@@ -75,14 +78,33 @@ const flowKey = "flow-backup-1";
 function Flow() {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
+  const [outputText, setOutputText] = useState<String>("");
   const [rfInstance, setRfInstance] = useState(null);
 
+
+  useEffect(() => {
+    setNodes((nds) =>
+      nds.map((node) => {
+        if (node.type === 'textOutput') {
+          // it's important that you create a new object here
+          // in order to notify react flow about the change
+          node.data = {
+            ...node.data,
+            value: outputText,
+          };
+        }
+
+        return node;
+      })
+    );
+  }, [outputText, setNodes]);
+
   const onPlay = useCallback(() => {
+    console.log(rfInstance)
     if (rfInstance) {
       const flow = rfInstance.toObject();
       const flowString = JSON.stringify(flow);
       localStorage.setItem(flowKey, flowString);
-
       // Send the flow data to the backend
       axios
         .post("http://127.0.0.1:8000/play/", flowString, {
@@ -92,6 +114,7 @@ function Flow() {
         })
         .then((response) => {
           console.log(response.data);
+          setOutputText(response.data.graph);
         })
         .catch((error) => {
           console.error("Error sending data to backend:", error);
