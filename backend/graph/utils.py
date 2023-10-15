@@ -31,10 +31,7 @@ def visualize_graph(graph: Graph):
     print(f"Graph saved as {filename}")
 
 
-def create_graph_from_string(data: dict) -> Graph:
-    # Parse the JSON string into a dictionary
-#     data = json.loads(data_string)
-    
+def create_graph_from_reactflow_dict(data: dict) -> Graph:
     # Create a new Graph object
     graph = Graph()
     

@@ -3,7 +3,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
-from graph.utils import create_graph_from_string
+from graph.utils import create_graph_from_reactflow_dict
 from graph.utils import visualize_graph
 
 
@@ -30,9 +30,9 @@ app.mount("/images", StaticFiles(directory="images"), name="images")
 async def play(data: dict):
     print("data received")
     print(data)
-    graph = create_graph_from_string(data)
+    graph = create_graph_from_reactflow_dict(data)
     # visualize_graph(graph)
-    return {"status": "Data received and printed"}
+    return {"status": "Data received and printed", "graph": str(graph)}
 
 @app.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
