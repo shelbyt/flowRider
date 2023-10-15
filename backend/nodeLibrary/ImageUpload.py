@@ -4,4 +4,4 @@ from node.base import Node
 class ImageUpload(Node):
     def process(self, _inputs):  # _inputs is unused for InputNode
         # Return the image URL stored in its params
-        return {"imageUpload": self.params.get("inputImage")}
+        return {"imageUpload": self.params.get("imageUrl")}
