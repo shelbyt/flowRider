@@ -42,6 +42,13 @@ class Graph:
 
         return sorted_nodes
 
+    def execute(self):
+        topo_order = self.topological_sort()
+        data = {}
+        for node in topo_order:
+            outputs = node.process(data)
+            data.update(outputs)
+
     def __repr__(self):
         nodes_repr = "\n".join(repr(node) for node in self.nodes.values())
         edges_repr = "\n".join(repr(edge) for edge in self.edges)

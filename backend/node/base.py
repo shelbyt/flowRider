@@ -16,9 +16,11 @@ class Node:
             id (any): The unique identifier for the instance.
             data (any): The data associated with the instance.
             node_type (any): The node type of the instance.
-            params (dict): The parameters for the instance.
+            params (dict): The params dictionary offers a way to pass configuration
+              settings or parameters to a node. This can be useful if different 
+              nodes need different settings or if you want to override default behaviors.
             edges (list): The list of edges associated with the instance.
-            artifacts (dict): The dictionary to store outputs/results.
+            artifacts (dict): The dictionary to store outputs/results and intermediate data other nodes might need
             status (str): The status of the instance. Possible values: 'unprocessed', 'processing', 'processed'.
         """
         self.id = id
@@ -29,6 +31,23 @@ class Node:
         self.artifacts = {}  # To store outputs/results
         self.status = "unprocessed"
         # Possible values: 'unprocessed', 'processing', 'processed'
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "type": self.type,
+            "params": self.params,
+            "status": self.status,
+            # Note: we're not including edges here to avoid circular references
+        }
+    def process(self, inputs):
+        """
+        Process the node. 
+        Default behavior is to just pass along its inputs. 
+        This will be overridden by derived classes.
+        """
+        return self.to_dict()
+
 
     def add_edge(self, edge):
         if edge not in self.edges:
