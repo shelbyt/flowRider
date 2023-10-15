@@ -7,6 +7,8 @@ import networkx as nx
 import time
 from nodeLibrary.SelectorNode import SelectorNode
 from nodeLibrary.ImageUpload import ImageUpload
+from nodeLibrary.TextOutput import TextOutput
+
 
 
 def visualize_graph(graph: Graph):
@@ -40,6 +42,7 @@ def create_graph_from_reactflow_dict(data: dict) -> Graph:
     node_class_mapping = {
         "selector": SelectorNode,
         "imageUpload": ImageUpload,
+        "textOutput": TextOutput
     }
     # Create a new Graph object
     #

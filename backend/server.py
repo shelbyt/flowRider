@@ -31,17 +31,20 @@ async def play(data: dict):
     print("data received")
     print(data)
     graph = create_graph_from_reactflow_dict(data)
-    graph.execute()
-    # visualize_graph(graph)
-    return {"status": "Data received and printed", "graph": str(graph)}
+    result = graph.execute()
+    return {
+        "status": "Data received and printed",
+        "graph": str(result.get("category") + ", " + str(result.get("score")) + "%"),
+    }
+
 
 @app.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
     file_extension = os.path.splitext(file.filename)[1]
     unique_filename = str(uuid.uuid4()) + file_extension
     file_path = os.path.join("images", unique_filename)
-    
+
     with open(file_path, "wb+") as buffer:
         buffer.write(file.file.read())
-        
+
     return {"filename": unique_filename}

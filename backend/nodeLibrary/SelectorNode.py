@@ -6,7 +6,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 from torchvision.io import read_image
-from torchvision.models import mobilenet_v3_small, MobileNet_V3_Small_Weights
+from torchvision.models import mobilenet_v3_small, MobileNet_V3_Small_Weights, EfficientNet_V2_L_Weights, efficientnet_v2_l
 import os
 
 
@@ -28,8 +28,10 @@ class SelectorNode(Node):
     def run_ml_model(self, image_url, model_type):
             # Load the MobileNet model (pre-trained on ImageNet)
 
-        weights = MobileNet_V3_Small_Weights.DEFAULT
-        model = mobilenet_v3_small(weights=weights)
+        # weights = MobileNet_V3_Small_Weights.DEFAULT
+        # model = mobilenet_v3_small(weights=weights)
+        weights = EfficientNet_V2_L_Weights.DEFAULT
+        model = efficientnet_v2_l(weights=weights)
         model.eval()  # Set the model to evaluation mode
 
         # Load the image from the given URL
@@ -42,17 +44,15 @@ class SelectorNode(Node):
 
         preprocess = weights.transforms()
         batch = preprocess(img).unsqueeze(0)
-        print("starting prediction")
         prediction = model(batch).squeeze(0).softmax(0)
-
-        print("classid")
         class_id = prediction.argmax().item()
         score = prediction[class_id].item()
         category_name = weights.meta["categories"][class_id]
 
+        result = {
+            "category": category_name,
+            "score": score
+        }
 
-        # Here, I'm just returning the index of the predicted class. 
-        # In a real-world scenario, you'd probably map this to a human-readable class name.
-        #return str(predicted_class_idx)
         print(f"Processed {image_url} with {model_type} result={category_name}: {100 * score:.1f}%")
-        return f"Processed {image_url} with {model_type} result={category_name}: {100 * score:.1f}%"
+        return result

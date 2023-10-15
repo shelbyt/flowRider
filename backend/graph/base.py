@@ -52,7 +52,8 @@ class Graph:
             outputs = node.process(data)
             data.update(outputs)
             print(f"Data is {data}")
-            print()
+            # Need to ensure there is output nodes and return it
+        return data.get("result", "")
 
     def __repr__(self):
         nodes_repr = "\n".join(repr(node) for node in self.nodes.values())
