@@ -35,7 +35,7 @@ class Node:
     def to_dict(self):
         return {
             "id": self.id,
-            "type": self.type,
+            "node_type": self.node_type,
             "params": self.params,
             "status": self.status,
             # Note: we're not including edges here to avoid circular references

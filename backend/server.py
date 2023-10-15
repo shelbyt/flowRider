@@ -31,6 +31,7 @@ async def play(data: dict):
     print("data received")
     print(data)
     graph = create_graph_from_reactflow_dict(data)
+    graph.execute()
     # visualize_graph(graph)
     return {"status": "Data received and printed", "graph": str(graph)}
 

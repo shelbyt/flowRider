@@ -22,7 +22,7 @@ class Graph:
     def topological_sort(self):
         # States: 0 = unvisited, 1 = visiting, 2 = visited
         state = {node: 0 for node in self.nodes.values()}
-        sorted_nodes = []
+        visited_nodes = []
 
         def dfs(node):
             if state[node] == 1:
@@ -34,20 +34,25 @@ class Graph:
                 for edge in node.get_outgoing_edges():
                     dfs(edge.target)
                 state[node] = 2
-                sorted_nodes.append(node)
+                visited_nodes.append(node)
 
         for node in self.nodes.values():
             if state[node] == 0:
                 dfs(node)
 
-        return sorted_nodes
+        # Reverse the visited nodes so that they are in
+        # the correct processing order
+        return visited_nodes[::-1]
 
     def execute(self):
         topo_order = self.topological_sort()
         data = {}
         for node in topo_order:
+            print(f"Processing {node}")
             outputs = node.process(data)
             data.update(outputs)
+            print(f"Data is {data}")
+            print()
 
     def __repr__(self):
         nodes_repr = "\n".join(repr(node) for node in self.nodes.values())
