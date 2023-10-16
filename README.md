@@ -1,7 +1,7 @@
 # FlowRider
 
 
-![1f9e578d-66c1-41ec-94a1-1f875ddd0410](https://github.com/shelbyt/flowRider/assets/1332316/aaa25915-7182-4872-bfd2-be9e95688579)
+![1f9e578d-66c1-41ec-94a1-1f875ddd0410](https://github.com/shelbyt/flowRider/assets/1332316/8255ac78-7eb7-4fca-99b2-d1730364749c)
 
 
-![13Picture2](https://github.com/shelbyt/flowRider/assets/1332316/99998173-cf6c-4691-97ac-82c2ccd12336)
+![13Picture2](https://github.com/shelbyt/flowRider/assets/1332316/248b3d37-1fdc-4084-8e68-80d3d6a7c96c)
