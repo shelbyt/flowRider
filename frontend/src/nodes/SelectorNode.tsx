@@ -54,24 +54,18 @@ function Select({ value, nodeId }) {
           </option>
         ))}
       </select>
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="-right-1 h-2.5 w-1.5 rounded-sm bg-gray-500"
-      />
-
-      <Handle
-        type="target"
-        position={Position.Left}
-        className="-right-1 h-2.5 w-1.5 rounded-sm bg-gray-500"
-      />
     </div>
   );
 }
 
 function SelectorNode({ id, data }) {
   return (
-    <BaseNode title="Model Select" >
+    <BaseNode title="Model Select" 
+       handles={[
+        { type: 'target' },
+        { type: 'source' },
+      ]} 
+    >
       <div className="p-2.5">
         <Select nodeId={id} value={data.selectValue} />
       </div>

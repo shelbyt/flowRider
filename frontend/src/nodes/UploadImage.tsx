@@ -52,10 +52,6 @@ function UploadImageNode({ id }) {
   return (
     // <div className="relative p-2 border rounded-md">
     <div className="card w-44 bg-base-100 shadow-xl">
-
-      <Handle type="target" position={Position.Left} />
-      <Handle type="source" position={Position.Right} />
-
       {uploadedImage ? (
         <img
           src={uploadedImage}
@@ -63,7 +59,11 @@ function UploadImageNode({ id }) {
           className="w-full h-32 object-contain"
         />
       ) : (
-        <BaseNode title="Input" >
+        <BaseNode title="Input"
+            handles={[
+        { type: 'source' },
+      ]}
+         >
           <label className="btn">Upload Image
             <input
               type="file"
