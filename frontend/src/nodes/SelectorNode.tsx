@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { Handle, useReactFlow, useStoreApi, Position } from "reactflow";
+import BaseNode from "../components/BaseNode";
 
 const options = [
   {
@@ -43,7 +44,7 @@ function Select({ value, nodeId }) {
   return (
     <div>
       <select
-        className="nodrag mt-1.5 w-full text-xs"
+        className="select select-bordered nodrag mt-1.5 w-full text-xs"
         onChange={onChange}
         value={value}
       >
@@ -70,14 +71,11 @@ function Select({ value, nodeId }) {
 
 function SelectorNode({ id, data }) {
   return (
-    <div className="w-45 rounded-sm bg-gray-100 text-xs text-black shadow-lg">
-      <div className="border-b border-gray-300 px-2.5 py-2 text-base">
-        <strong> Select Base Model </strong>
-      </div>
+    <BaseNode title="Model Select" >
       <div className="p-2.5">
         <Select nodeId={id} value={data.selectValue} />
       </div>
-    </div>
+    </BaseNode>
   );
 }
 

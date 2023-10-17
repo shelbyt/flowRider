@@ -1,7 +1,7 @@
 import React, { useState, memo, useEffect } from "react";
 import { Handle, Position, useStoreApi, useReactFlow } from "reactflow";
 import axios from "axios";
-
+import BaseNode from "../components/BaseNode";
 function UploadImageNode({ id }) {
   console.log("node id =========", id);
   const { setNodes } = useReactFlow();
@@ -51,7 +51,7 @@ function UploadImageNode({ id }) {
 
   return (
     // <div className="relative p-2 border rounded-md">
-      <div className="card w-44 bg-base-100 shadow-xl">
+    <div className="card w-44 bg-base-100 shadow-xl">
 
       <Handle type="target" position={Position.Left} />
       <Handle type="source" position={Position.Right} />
@@ -63,7 +63,7 @@ function UploadImageNode({ id }) {
           className="w-full h-32 object-contain"
         />
       ) : (
-        <>
+        <BaseNode title="Input" >
           <label className="btn">Upload Image
             <input
               type="file"
@@ -72,7 +72,7 @@ function UploadImageNode({ id }) {
               className="hidden"
             />
           </label>
-        </>
+        </BaseNode>
       )}
     </div>
   );
