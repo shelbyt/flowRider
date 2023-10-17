@@ -50,7 +50,9 @@ function UploadImageNode({ id }) {
   }, [uploadedImage, id, setNodes, store]);
 
   return (
-    <div className="relative p-2 border rounded-md">
+    // <div className="relative p-2 border rounded-md">
+      <div className="card w-44 bg-base-100 shadow-xl">
+
       <Handle type="target" position={Position.Left} />
       <Handle type="source" position={Position.Right} />
 
@@ -62,8 +64,7 @@ function UploadImageNode({ id }) {
         />
       ) : (
         <>
-          <label className="block text-center cursor-pointer p-2 border rounded-md bg-gray-200 hover:bg-gray-300">
-            Upload Image
+          <label className="btn">Upload Image
             <input
               type="file"
               accept="image/*"

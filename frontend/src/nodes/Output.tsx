@@ -2,19 +2,15 @@
 import React, { memo, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 
-function OutputNode({data}) {
+function OutputNode({ data }) {
   return (
-    <div className="relative p-2 border rounded-md">
-      <Handle type="target" position={Position.Left} />
-      
-      <label className="block text-center">
-        Output:
-        <textarea
-          className="mt-2 w-full p-2 border rounded-md text-xs"
-          value={data.value}
-          readOnly
-        />
-      </label>
+    <div className="card bordered bg-gray-800 text-white">
+      <div className="card-top-bar bg-gray-800 text-white text-xs p-2 border-b border-gray-700">
+        OUTPUT
+      </div>
+      <div className="card-body">
+        <input readOnly type="text" className="input input-bordered w-full max-w-xs" />
+      </div>
     </div>
   );
 }
