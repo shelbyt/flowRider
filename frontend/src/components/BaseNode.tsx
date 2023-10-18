@@ -9,6 +9,10 @@ type BaseNodeProps = {
 function BaseNode({ title, children, handles = [] }: BaseNodeProps) {
   const leftHandles = handles.filter(handle => handle.type === 'target');
   const rightHandles = handles.filter(handle => handle.type === 'source');
+const maxHandles = Math.max(leftHandles.length, rightHandles.length);
+const paddingValue = 16 * maxHandles;
+const paddingTopClass = `pt-${paddingValue}`;
+
 
   return (
     <div className="card bordered bg-gray-800 text-white relative w-64">
@@ -34,7 +38,7 @@ function BaseNode({ title, children, handles = [] }: BaseNodeProps) {
         </div>
       )}
 
-      <div className="card-body">
+      <div className={`card-body ${paddingTopClass}`}>
         {children}
       </div>
 

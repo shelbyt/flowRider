@@ -22,6 +22,7 @@ import SelectorNode from "./nodes/SelectorNode.tsx";
 import PlayPanel from "./actions/play.tsx";
 import UploadImage from "./nodes/UploadImage.tsx";
 import Output from "./nodes/Output.tsx";
+import {NodeTest, NodeTest1} from "./nodes/NodeTest.tsx";
 
 const nodeTypes = {
   annotation: AnnotationNode,
@@ -29,9 +30,23 @@ const nodeTypes = {
   selector: SelectorNode,
   imageUpload: UploadImage,
   textOutput: Output,
+  bnt: NodeTest,
+  bnt1: NodeTest1,
 };
 
 const initialNodes = [
+
+  {
+    id: "999",
+    type: "bnt",
+    position: { x: 100, y: 200 },
+  },
+
+  {
+    id: "3999",
+    type: "bnt1",
+    position: { x: 200, y: 200 },
+  },
   {
     id: "4",
     type: "imageUpload",
